@@ -119,7 +119,7 @@ tests/test_generadores.py::test_generador_json PASSED
 ## 📂 Estructura del proyecto
 
 ```bash
-proyecto_srp/
+practica_srp/
 ├── main.py
 ├── README.md
 ├── fuentes/
