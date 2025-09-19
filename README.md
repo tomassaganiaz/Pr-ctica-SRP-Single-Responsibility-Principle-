@@ -112,11 +112,7 @@ tests/test_generadores.py::test_generador_json PASSED
       <td>README incluye comandos para ejecutar el código (python main.py) y correr tests (pytest -v).</td>
       <td>Facilita la <strong>ejecución y prueba</strong> para cualquier usuario sin necesidad de instrucciones externas.</td>
     </tr>
-    <tr>
-      <td><strong>Posibles mejoras adicionales</strong></td>
-      <td>- Agregar docstrings en clases y métodos<br>- Test de integración del Reporte<br>- Scripts de ejecución automatizada (run.sh o run.bat)</td>
-      <td>Eleva la calidad del proyecto y lo hace más profesional; prepara el proyecto para producción o portfolio.</td>
-    </tr>
+
   </tbody>
 </table>
 
