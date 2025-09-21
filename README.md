@@ -89,7 +89,7 @@ tests/test_procesadores.py::test_procesador_maximo PASSED
 tests/test_generadores.py::test_generador_texto PASSED
 tests/test_generadores.py::test_generador_json PASSED
 
-Test de integración del Reporte
+## Test de integración del Reporte
 
 Se incluye en tests/test_reporte.py
 
