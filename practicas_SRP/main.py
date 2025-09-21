@@ -9,16 +9,16 @@ from entregadores.mostrar_consola import MostrarConsola
 from reporte.reporte import Reporte
 
 if __name__ == "__main__":
-    # 🔹 Ejemplo 1: promedio + texto + archivo
+    # Ejemplo 1: promedio + texto + archivo
     reporte1 = Reporte(
         FuenteDatos(),
         ProcesadorPromedio(),
         GeneradorTexto(),
-        GuardarArchivo()
+        GuardarArchivo("reporte.txt")
     )
     reporte1.ejecutar()
 
-    # 🔹 Ejemplo 2: suma + JSON + consola
+    # Ejemplo 2: suma + JSON + consola
     reporte2 = Reporte(
         FuenteDatos(),
         ProcesadorSuma(),
@@ -27,7 +27,7 @@ if __name__ == "__main__":
     )
     reporte2.ejecutar()
 
-    # 🔹 Ejemplo 3: máximo + texto + consola
+    # Ejemplo 3: máximo + texto + consola
     reporte3 = Reporte(
         FuenteDatos(),
         ProcesadorMaximo(),
