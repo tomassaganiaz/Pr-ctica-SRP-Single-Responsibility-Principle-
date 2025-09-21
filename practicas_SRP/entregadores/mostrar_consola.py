@@ -1,3 +1,7 @@
 class MostrarConsola:
-    def guardar(self, contenido, nombre=None):
-        print(contenido)
+    """
+    Entrega el reporte mostrándolo en la consola.
+    """
+
+    def entregar(self, salida):
+        print(salida)
