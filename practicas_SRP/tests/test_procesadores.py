@@ -1,19 +1,15 @@
-import pytest
 from procesadores.procesador_promedio import ProcesadorPromedio
 from procesadores.procesador_suma import ProcesadorSuma
 from procesadores.procesador_maximo import ProcesadorMaximo
 
 def test_procesador_promedio():
-    proc = ProcesadorPromedio()
-    datos = [10, 20, 30]
-    assert proc.procesar(datos) == pytest.approx(20.0)
+    p = ProcesadorPromedio()
+    assert p.procesar([10, 20, 30]) == 20
 
 def test_procesador_suma():
-    proc = ProcesadorSuma()
-    datos = [10, 20, 30]
-    assert proc.procesar(datos) == 60
+    p = ProcesadorSuma()
+    assert p.procesar([10, 20, 30]) == 60
 
 def test_procesador_maximo():
-    proc = ProcesadorMaximo()
-    datos = [10, 20, 30]
-    assert proc.procesar(datos) == 30
+    p = ProcesadorMaximo()
+    assert p.procesar([10, 20, 30]) == 30
