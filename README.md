@@ -35,13 +35,26 @@ Este proyecto implementa un **sistema de reportes** aplicando el **Principio de 
 
 ---
 
+## 🧩 Diagrama de clases (Mermaid)
+
+```mermaid
+classDiagram
+    Reporte --> FuenteDatos
+    Reporte --> BaseProcesador
+    Reporte --> GeneradorTexto
+    Reporte --> GuardarArchivo
+
+    BaseProcesador <|-- ProcesadorPromedio
+    BaseProcesador <|-- ProcesadorSuma
+    BaseProcesador <|-- ProcesadorMaximo
+```
+
 ## 🚀 Ejecución del código
 
 1. Clonar el repositorio:
-```bash
+
 git clone <URL_DEL_REPO>
 cd practica_srp
-```
 
 2. Ejecutar el programa:
 
@@ -55,7 +68,8 @@ Suma + JSON + Consola
 
 Máximo + Texto + Consola
 
-🧪 Testing
+## 🧪 Testing
+Tests unitarios
 
 1. Instalar pytest (si no lo tenés):
 
@@ -75,29 +89,64 @@ tests/test_procesadores.py::test_procesador_maximo PASSED
 tests/test_generadores.py::test_generador_texto PASSED
 tests/test_generadores.py::test_generador_json PASSED
 
-🧩 Diagrama de clases (Mermaid)
+Test de integración del Reporte
 
-classDiagram
-    Reporte --> FuenteDatos
-    Reporte --> BaseProcesador
-    Reporte --> GeneradorTexto
-    Reporte --> GuardarArchivo
+Se incluye en tests/test_reporte.py
 
-    BaseProcesador <|-- ProcesadorPromedio
-    BaseProcesador <|-- ProcesadorSuma
-    BaseProcesador <|-- ProcesadorMaximo
+Verifica que todo el flujo (datos → procesador → generador → entregador) funcione correctamente.
 
-📌 Resumen de mejoras del proyecto
-<table> <thead> <tr> <th>Categoría</th> <th>Qué se hizo</th> <th>Beneficio</th> </tr> </thead> <tbody> <tr> <td><strong>SRP (Single Responsibility Principle)</strong></td> <td>Se separó la clase Reporte en: FuenteDatos, Procesadores, Generadores, Entregadores y Reporte como orquestador.</td> <td>Cada clase tiene <strong>una sola razón para cambiar</strong>; código modular y fácil de mantener.</td> </tr> <tr> <td><strong>Strategy</strong></td> <td>Los procesadores (ProcesadorPromedio, ProcesadorSuma, ProcesadorMaximo) implementan un patrón Strategy mediante una clase base BaseProcesador.</td> <td>Permite <strong>cambiar el algoritmo de procesamiento</strong> sin modificar el resto del sistema; muestra un patrón de diseño real.</td> </tr> <tr> <td><strong>Extensibilidad</strong></td> <td>Se agregaron nuevas variantes: GeneradorJSON, MostrarConsola además de GeneradorTexto y GuardarArchivo.</td> <td>Demuestra que se pueden agregar nuevas formas de salida y entrega sin tocar las clases originales.</td> </tr> <tr> <td><strong>Estructura de carpetas</strong></td> <td>Proyecto organizado en: fuentes/, procesadores/, generadores/, entregadores/, reporte/, tests/.</td> <td>Código <strong>ordenado y modular</strong>, fácil de navegar y mantener.</td> </tr> <tr> <td><strong>README mejorado</strong></td> <td>Incluye: descripción, tabla de responsabilidades, diagrama Mermaid, instrucciones de ejecución y testing.</td> <td>Documentación clara y profesional; facilita entender el proyecto y su uso.</td> </tr> <tr> <td><strong>Tests unitarios (pytest)</strong></td> <td>Tests para procesadores y generadores, independientes del main.py.</td> <td>Garantiza que <strong>las piezas críticas funcionan correctamente</strong>; buenas prácticas de testing.</td> </tr> <tr> <td><strong>Ejemplos en main.py</strong></td> <td>Tres ejemplos distintos: promedio+texto+archivo, suma+JSON+consola, máximo+texto+consola.</td> <td>Permite <strong>ver resultados inmediatos</strong> y muestra cómo combinar las piezas; documentación viva.</td> </tr> <tr> <td><strong>Comandos claros</strong></td> <td>README incluye comandos para ejecutar el código (python main.py) y correr tests (pytest -v).</td> <td>Facilita la <strong>ejecución y prueba</strong> para cualquier usuario sin necesidad de instrucciones externas.</td> </tr> <tr> <td><strong>Posibles mejoras adicionales</strong></td> <td>- Agregar docstrings en clases y métodos<br>- Test de integración del Reporte<br>- Scripts de ejecución automatizada (run.sh o run.bat)</td> <td>Eleva la calidad del proyecto y lo hace más profesional; prepara el proyecto para producción o portfolio.</td> </tr> </tbody> </table>
+## ⚡ Scripts de ejecución automática
+1. Linux/macOS → run.sh
 
-📂 Estructura del proyecto
+#!/bin/bash
+echo "Ejecutando main.py..."
+python main.py
+
+echo "Ejecutando tests..."
+pytest -v
+
+2. Dar permisos de ejecución:
+
+chmod +x run.sh
+
+3. Windows → run.bat
+
+@echo off
+echo Ejecutando main.py...
+python main.py
+
+echo Ejecutando tests...
+pytest -v
+pause
+
+. Permite ejecutar programa + tests con un solo comando.
+
+## 📌 mejoras del proyecto
+<table> <thead> <tr> <th>Categoría</th> <th>Qué se hizo</th> <th>Beneficio</th> </tr> </thead> <tbody> <tr> <td><strong>SRP (Single Responsibility Principle)</strong></td> <td>Se separó la clase Reporte en: FuenteDatos, Procesadores, Generadores, Entregadores y Reporte como orquestador.</td> <td>Cada clase tiene <strong>una sola razón para cambiar</strong>; código modular y fácil de mantener.</td> </tr> <tr> <td><strong>Strategy</strong></td> <td>Los procesadores implementan un patrón Strategy mediante una clase base BaseProcesador.</td> <td>Permite <strong>cambiar el algoritmo de procesamiento</strong> sin modificar el resto del sistema.</td> </tr> <tr> <td><strong>Interfaz / Polimorfismo</strong></td> <td>BaseProcesador funciona como interfaz abstracta; Reporte usa cualquier procesador sin modificar su código.</td> <td>Demuestra polimorfismo y flexibilidad de diseño.</td> </tr> <tr> <td><strong>Extensibilidad</strong></td> <td>Se agregaron GeneradorJSON, MostrarConsola, además de las versiones originales.</td> <td>Permite agregar nuevas salidas o entregadores sin tocar el código existente.</td> </tr> <tr> <td><strong>Estructura de carpetas</strong></td> <td>fuentes/, procesadores/, generadores/, entregadores/, reporte/, tests/</td> <td>Código ordenado y modular, fácil de navegar.</td> </tr> <tr> <td><strong>Tests</strong></td> <td>Tests unitarios y de integración del flujo completo del Reporte.</td> <td>Verifica que todas las piezas funcionen correctamente y de manera conjunta.</td> </tr> <tr> <td><strong>Ejemplos en main.py</strong></td> <td>Promedio+Texto+Archivo, Suma+JSON+Consola, Máximo+Texto+Consola.</td> <td>Documentación viva y demostración inmediata de funcionalidad.</td> </tr> <tr> <td><strong>Scripts de ejecución</strong></td> <td>run.sh (Linux/macOS) y run.bat (Windows) para ejecutar programa + tests</td> <td>Ejecutar todo con un solo comando, facilita pruebas y demostraciones.</td> </tr> </tbody> </table>
+
+## 📂 Estructura del proyecto
 
 practica_srp/
 ├── main.py
 ├── README.md
+├── run.sh
+├── run.bat
 ├── fuentes/
+│   └── fuente_datos.py
 ├── procesadores/
+│   ├── base_procesador.py
+│   ├── procesador_promedio.py
+│   ├── procesador_suma.py
+│   └── procesador_maximo.py
 ├── generadores/
+│   ├── generador_texto.py
+│   └── generador_json.py
 ├── entregadores/
+│   ├── guardar_archivo.py
+│   └── mostrar_consola.py
 ├── reporte/
+│   └── reporte.py
 └── tests/
+    ├── test_procesadores.py
+    ├── test_generadores.py
+    └── test_reporte.py
