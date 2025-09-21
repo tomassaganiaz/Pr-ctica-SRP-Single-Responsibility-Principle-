@@ -1,15 +1,12 @@
-import json
 from generadores.generador_texto import GeneradorTexto
 from generadores.generador_json import GeneradorJSON
+import json
 
 def test_generador_texto():
-    gen = GeneradorTexto()
-    salida = gen.generar(25)
-    assert "25" in salida
-    assert salida.startswith("El resultado es:")
+    g = GeneradorTexto()
+    assert g.generar(50) == "El resultado es: 50"
 
 def test_generador_json():
-    gen = GeneradorJSON()
-    salida = gen.generar(25)
-    data = json.loads(salida)
-    assert data["resultado"] == 25
+    g = GeneradorJSON()
+    salida = g.generar(100)
+    assert json.loads(salida)["resultado"] == 100
