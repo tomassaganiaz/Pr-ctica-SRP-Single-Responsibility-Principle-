@@ -132,21 +132,8 @@ practica_srp/
 ├── run.sh
 ├── run.bat
 ├── fuentes/
-│   └── fuente_datos.py
 ├── procesadores/
-│   ├── base_procesador.py
-│   ├── procesador_promedio.py
-│   ├── procesador_suma.py
-│   └── procesador_maximo.py
 ├── generadores/
-│   ├── generador_texto.py
-│   └── generador_json.py
 ├── entregadores/
-│   ├── guardar_archivo.py
-│   └── mostrar_consola.py
 ├── reporte/
-│   └── reporte.py
 └── tests/
-    ├── test_procesadores.py
-    ├── test_generadores.py
-    └── test_reporte.py
